@@ -1,0 +1,10 @@
+*.csv
+!sample.csv
+*.ipynb
+*.env
+*.pth
+*.pth.tar
+__pycache__
+.DS_store
+.ipynb_checkpoints
+.vscode
