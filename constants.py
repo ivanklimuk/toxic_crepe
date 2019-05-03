@@ -1,14 +1,18 @@
+"""
+Each of these variables should be imported as an env var in the future
+"""
+
 import os
 
 MAX_LENGTH = 222
 
 # MODEL PARAMETERS
-CHANNELS=256
-KERNEL_SIZES=[7, 7, 4, 4, 3, 3]
-POOLING_SIZE=3
-LINEAR_SIZE=1024
-DROPOUT=0.35
-OUTPUT_SIZE=1
+CHANNELS = 256
+KERNEL_SIZES = [7, 7, 4, 4, 3, 3]
+POOLING_SIZE = 3
+LINEAR_SIZE = 1024
+DROPOUT = 0.35
+OUTPUT_SIZE = 1
 
 EPOCHS = 50
 BATCH_SIZE = 64
