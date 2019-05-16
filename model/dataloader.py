@@ -36,7 +36,7 @@ class DataLoader(object):
             labels = np.array(pd.read_csv(self.labels_path, header=self.header))
         else:
             labels, data = data[:, 0], data[:, 1]
-        
+
         if self.categorical:
             labels = np.vstack((
                 (labels == 1).astype(int),
@@ -58,19 +58,19 @@ class DataLoader(object):
             alphabet += list(string.punctuation) + ['\n', ' ']
         if self.russian:
             alphabet += list(RUS + RUS.upper())
-        #self.alphabet = set(alphabet)
         self.alphabet = alphabet
-        self.vocabulary_size = len(self.alphabet)
-        vocabulary = {character: number + 1 for number, character in enumerate(self.alphabet)}
+        vocabulary = {character: number for number, character in enumerate(self.alphabet)}
         self.vocabulary = vocabulary
+        self.vocabulary_size = len(vocabulary)
 
     def text_to_array(self, texts):
-        array = np.zeros((len(texts), self.max_length), dtype=np.int)
+        # empty characters are encoded with a `-1` (it's more convenient for the one hot encoding later on in the model)
+        array = np.zeros((len(texts), self.max_length), dtype=np.int) - 1
         for row, line in enumerate(texts):
             if self.lower:
                 line = line.lower()
             for column in range(min([len(line), self.max_length])):
-                array[row, column] = self.vocabulary.get(line[column], 0)  # replace with 0
+                array[row, column] = self.vocabulary.get(line[column], -1)  # replace with -1
         return array
 
     def load_data(self, split=True):

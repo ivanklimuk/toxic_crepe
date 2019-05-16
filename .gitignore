@@ -1,6 +1,7 @@
 *.csv
 !sample.csv
 *.ipynb
+!*_report.ipynb
 *.env
 *.pth
 *.pth.tar
