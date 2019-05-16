@@ -146,7 +146,7 @@ def roc_confusion(model, data, mode='Train', batch_size=BATCH_SIZE):
     confusion = confusion_matrix(data['labels'], output)
     roc_auc_score = roc(data['labels'], output)
     logging.info('- {} ROC AUC score: {}'.format(mode, roc_auc_score))
-    logging.info('{} confusion matrix:'.format(mode), confusion)
+    logging.info('{} confusion matrix:'.format(mode))
     logging.info(str(confusion[0]))
     logging.info(str(confusion[1]))
 
