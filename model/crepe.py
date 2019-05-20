@@ -14,7 +14,7 @@ class Crepe(nn.Module):
                  vocabulary_size,
                  channels,
                  kernel_sizes,
-                 pooling_size,
+                 pooling_sizes,
                  linear_size,
                  dropout,
                  output_size
@@ -25,7 +25,7 @@ class Crepe(nn.Module):
         self.vocabulary_size = vocabulary_size
         self.channels = channels
         self.kernel_sizes = kernel_sizes
-        self.pooling_size = pooling_size
+        self.pooling_sizes = pooling_sizes
         self.linear_size = linear_size
         self.dropout = dropout
         self.output_size = output_size
@@ -35,14 +35,14 @@ class Crepe(nn.Module):
                                        out_channels=self.channels,
                                        kernel_size=self.kernel_sizes[0])
         nn.init.normal_(self.convolution_0.weight, mean=0, std=0.1)
-        self.max_pooling_0 = nn.MaxPool1d(kernel_size=self.pooling_size)
+        self.max_pooling_0 = nn.MaxPool1d(kernel_size=self.pooling_sizes[0])
         self.activation_0 = nn.ReLU(inplace=False)
 
         self.convolution_1 = nn.Conv1d(in_channels=self.channels,
                                        out_channels=self.channels,
                                        kernel_size=self.kernel_sizes[1])
         nn.init.normal_(self.convolution_1.weight, mean=0, std=0.1)
-        self.max_pooling_1 = nn.MaxPool1d(kernel_size=self.pooling_size)
+        self.max_pooling_1 = nn.MaxPool1d(kernel_size=self.pooling_sizes[1])
         self.activation_1 = nn.ReLU(inplace=False)
 
         self.convolution_2 = nn.Conv1d(in_channels=self.channels,
@@ -67,7 +67,7 @@ class Crepe(nn.Module):
                                        out_channels=self.channels,
                                        kernel_size=self.kernel_sizes[5])
         nn.init.normal_(self.convolution_1.weight, mean=0, std=0.1)
-        self.max_pooling_5 = nn.MaxPool1d(kernel_size=self.pooling_size)
+        self.max_pooling_5 = nn.MaxPool1d(kernel_size=self.pooling_sizes[2])
         self.activation_5 = nn.ReLU(inplace=False)
 
         self.linear_6 = nn.Linear(self.linear_size, self.linear_size)
